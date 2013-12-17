@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>CHAPITRE 3 - Compléments sur les boucles</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Yann IRBAH">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+<section>
+  <h1>
+    CHAPITRE 3
+  </h1>
+  <h3>
+    Compléments sur les boucles
+  </h3>
+  <p>
+    <small>Created by <a href="http://www.wengee.co">Yann IRBAH</a> </small>
+  </p>
+</section><section>
+  <h2>
+    SOMMAIRE
+  </h2>
+  <ul>
+    <li class="fragment">
+      Boucle Do-While
+    </li>
+    <li class="fragment">
+      La notion de bloc
+    </li>
+    <li class="fragment">
+      Opérateurs pour les conditions
+    </li>
+    <li class="fragment">
+      Exercices
+    </li>
+  </ul>
+  <aside class="notes">
+     Nous nous sommes intéressé aux bases de la construction d’un programme à base de boucles, mais il est nécessaire d’approfondir un peu le sujet avant d’aborder des notions  plus avancées.
+  </aside>
+</section>
+<section>
+  <h2>
+    La boucle DO-WHILE
+  </h2>
+  <p>
+    La boucle do-while est une boucle while où les instructions du corps sont exécutées avant de tester la condition de la boucle.
+  </p>
+</section>
+<section>
+  <pre><code>do
+{
+    suiteInstructions
+}
+while (condition);
+</code></pre>
+  <p>
+    où condition est une expression booléenne.
+  </p>
+</section>
+<section>
+  <ol>
+    <li class="fragment">
+      suiteInstructions est exécuté.
+    </li>
+    <li class="fragment">
+      condition est évaluée à la fin de chaque itération : si elle est vraie, le contrôle revient à suiteInstructions (point 1)
+    </li>
+    <li class="fragment">
+      si elle est fausse, le contrôle du programme passe à l’instruction immédiatement après la boucle
+    </li>
+  </ol>
+  <aside class="notes">
+    L’intérêt d’une boucle do-while est de pouvoir exécuter au moins une fois les instructions du corps avant de tester la condition d’arrêt. Cela peut éviter la duplication des instructions de modification des variables du test, qui est parfois nécessaire dans les boucles while.
+  </aside>
+</section>
+<section>
+  <h2>
+    Exemple
+  </h2>
+  <pre><code>Terminal.writeString(&quot;Entrez un entier (terminer le programme avec 0): &quot;);
+n = Terminal.readInt(); // Saisie d’initialisation pour n
+total = 0;
+
+while ( n != 0 )
+{
+  total = total + n;
+  Terminal.writeString(&quot;Entrez un entier (terminer le programme avec 0): &quot;);
+  n = Terminal.readInt(); // Nouvelle saisie de n }
+}
+</code></pre>
+</section>
+<section>
+  <h2>
+    Exercice
+  </h2>
+  <p>
+     Modifiez le programme précédent en vous servant de la boucle <strong>do-while </strong>afin d’éliminer les duplications de code inutiles.
+  </p>
+</section>
+<section>
+  <h2>
+    Solution
+  </h2>
+  <pre><code>Terminal.writeString(&quot;Entrez un entier (terminer le programme avec 0): &quot;);
+total = 0;
+
+do
+{
+  total = total + n;
+  Terminal.writeString(&quot;Entrez un entier (terminer le programme avec 0): &quot;);
+  n = Terminal.readInt(); // Nouvelle saisie de n }
+} while ( n != 0 )
+</code></pre>
+</section>
+<section>
+  <h2>
+    La notion de bloc
+  </h2>
+  <ul>
+    <li class="fragment">
+      Un bloc est une suite d'insctructions contenues entre deux accolades
+    </li>
+    <li class="fragment">
+      La vie d'une variable (portée) est liée à un bloc
+    </li>
+  </ul>
+  <aside class="notes">
+    C'est le cas pour les conditions, les boucles, ou encore la méthode main
+  </aside>
+</section>
+<section>
+  <h2>
+    Exemple
+  </h2>
+  <pre><code>public static void main (String[] args) {
+  /*debut bloc 1*/
+  int a = 2;
+  Terminal.writeStringln(&quot;valeur de a: &quot;+ a );
+  if (a == 0) {
+    /* debut bloc 2 */
+    int b = 3 + a;
+    Terminal.writeStringln(&quot;valeur de b: &quot;+ b );
+    /* fin bloc 2*/
+  } else {
+    /* debut bloc 3*/
+    int c = 3 + a;
+    Terminal.writeStringln(&quot;valeur de c: &quot;+ c);
+    /* fin bloc 3*/
+  }
+  Terminal.writeStringln(&quot;valeur de a: &quot;+ a );
+  /* fin bloc 1*/
+}
+</code></pre>
+</section>
+<section>
+  <h2>
+    Variables locales à une boucle FOR
+  </h2>
+  <pre><code>somme = 0;
+for(int i=1; i &lt;= n; i++) { //dans ce bloc, i existe
+  somme = somme + i;
+} // fin de vie de i
+
+// ici, i n’existe pas
+Terminal.wrirteInt(i); // Cette instruction provoquerait une erreur.
+</code></pre>
+</section>
+<section>
+  <h2>
+    Boucles imbriquées
+  </h2>
+  <pre><code>public class ExImb {
+  public static void main(String[] args) {
+    for (int i = 0; i &lt; 5; i = i + 1) {
+      for (int j = 0; j &lt; 8; j = j + 1) {
+        Terminal.writeInt(j);
+      }
+      Terminal.lineBreak();
+    }
+  }
+}
+</code></pre>
+  <div class="fragment">
+    <p>
+      produit
+    </p>
+    <pre><code>01234567
+01234567
+01234567
+01234567
+01234567
+</code></pre>
+  </div>
+</section>
+<section>
+  <h2>
+    Opérateurs
+  </h2>
+  <ul>
+    <li class="fragment">
+      Opérateurs de comparaison
+    </li>
+    <li class="fragment">
+      Opérateurs logiques
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    Opérateurs de comparaison
+  </h2>
+  <img src="images/op_comp.png" />
+</section>
+<section>
+  <h2>
+    Opérateurs logiques
+  </h2>
+  <img src="images/op_logic.png" />
+</section>
+<section>
+  <h3>
+    table de vérité
+  </h3>
+  <img src="images/truth_table.png" />
+</section>
+<section>
+  <h1>
+    EXERCICES
+  </h1>
+  <a href="http://bit.ly/1bLn9s6">http://bit.ly/1bLn9s6</a>
+</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,112 @@
+section
+  h2 SOMMAIRE
+  ul
+    li.fragment Boucle Do-While
+    li.fragment La notion de bloc
+    li.fragment Opérateurs pour les conditions
+    li.fragment Exercices
+
+  aside.notes
+    | Nous nous sommes intéressé aux bases de la construction d’un programme à base de boucles, mais il est nécessaire d’approfondir un peu le sujet avant d’aborder des notions  plus avancées.
+
+section
+  h2 La boucle DO-WHILE
+  p
+    | La boucle do-while est une boucle while où les instructions du corps sont exécutées avant de tester la condition de la boucle.
+
+section
+  pre
+    code = contents_of('code/1_do-while.java')
+
+
+  p
+    | où condition est une expression booléenne.
+
+section
+  ol
+    li.fragment suiteInstructions est exécuté.
+    li.fragment condition est évaluée à la fin de chaque itération : si elle est vraie, le contrôle revient à suiteInstructions (point 1)
+    li.fragment si elle est fausse, le contrôle du programme passe à l’instruction immédiatement après la boucle
+
+  aside.notes
+    | L’intérêt d’une boucle do-while est de pouvoir exécuter au moins une fois les instructions du corps avant de tester la condition d’arrêt. Cela peut éviter la duplication des instructions de modification des variables du test, qui est parfois nécessaire dans les boucles while.
+
+
+
+section
+  h2 Exemple
+  pre
+    code = contents_of('code/2_exemple1.java')
+
+section
+  h2 Exercice
+  p
+    ' Modifiez le programme précédent en vous servant de la boucle
+    strong
+      ' do-while
+    | afin d’éliminer les duplications de code inutiles.
+
+section
+  h2 Solution
+  pre
+    code = contents_of('code/3_exemple2.java')
+
+section
+  h2 La notion de bloc
+  ul
+    li.fragment Un bloc est une suite d'insctructions contenues entre deux accolades
+    li.fragment La vie d'une variable (portée) est liée à un bloc
+
+  aside.notes
+    | C'est le cas pour les conditions, les boucles, ou encore la méthode main
+
+section
+  h2 Exemple
+  pre
+    code = contents_of('code/4_exemple3.java')
+
+section
+  h2 Variables locales à une boucle FOR
+  pre
+    code = contents_of('code/5_exemple4.java')
+
+section
+  h2 Boucles imbriquées
+  pre
+    code = contents_of('code/6_exemple5.java')
+  div.fragment
+    p
+      | produit
+    pre
+      code = contents_of('code/7_exemple5-output.sh')
+
+section
+  h2 Opérateurs
+  ul
+    li.fragment Opérateurs de comparaison
+    li.fragment Opérateurs logiques
+
+section
+  h2 Opérateurs de comparaison
+  img src='images/op_comp.png'
+
+
+section
+  h2 Opérateurs logiques
+  img src='images/op_logic.png'
+
+section
+  h3 table de vérité
+  img src='images/truth_table.png'
+
+section
+  h1 EXERCICES
+  a href="http://bit.ly/1bLn9s6" http://bit.ly/1bLn9s6
+
+
+
+
+
+
+
+
